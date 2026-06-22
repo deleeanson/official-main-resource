@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七星彩 · 资料索引与信息整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde3cf 0%, #f8c9a6 30%, #f5b587 70%, #ef9e6a 100%);
+            min-height: 100vh;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #2a1f1a;
+            line-height: 1.7;
+        }
+
+        .magazine {
+            max-width: 1020px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.92);
+            backdrop-filter: blur(4px);
+            border-radius: 42px 42px 32px 32px;
+            box-shadow: 0 18px 40px rgba(140, 70, 30, 0.18);
+            overflow: hidden;
+            padding: 0;
+        }
+
+        /* hero banner */
+        .hero {
+            background: linear-gradient(128deg, #d97c4a, #b45d34);
+            color: #fffcf7;
+            padding: 3.2rem 2.8rem 2.6rem 2.8rem;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 24px;
+            background: rgba(255, 250, 245, 0.92);
+            border-radius: 32px 32px 0 0;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 550;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            font-weight: 350;
+            opacity: 0.9;
+            border-left: 3px solid #fadbc2;
+            padding-left: 1.1rem;
+            margin-top: 0.4rem;
+        }
+
+        .hero .meta-note {
+            margin-top: 1.8rem;
+            font-size: 0.92rem;
+            opacity: 0.75;
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero .meta-note span {
+            background: rgba(255, 230, 210, 0.18);
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+        }
+
+        /* 卡片内容区 */
+        .content-wrap {
+            padding: 1.6rem 2.8rem 3rem 2.8rem;
+        }
+
+        .section-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2rem 2.2rem;
+            margin: 1.8rem 0;
+            box-shadow: 0 6px 18px rgba(160, 90, 40, 0.08);
+            transition: box-shadow 0.15s ease;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 10px 28px rgba(160, 80, 30, 0.12);
+        }
+
+        .section-card h2 {
+            font-size: 1.65rem;
+            font-weight: 500;
+            color: #7f4b2c;
+            margin-bottom: 0.9rem;
+            letter-spacing: 0.3px;
+            border-bottom: 2px solid #f0d9c8;
+            padding-bottom: 0.4rem;
+            display: inline-block;
+        }
+
+        .section-card p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #2f241f;
+        }
+
+        .section-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.8rem;
+            margin: 1.2rem 0 0.8rem 0;
+        }
+
+        .tag {
+            background: #f5e5da;
+            color: #5d3824;
+            font-size: 0.85rem;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            background: #d48453;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.65rem 1.8rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 10px rgba(180, 90, 40, 0.18);
+            margin-top: 0.6rem;
+        }
+
+        .btn-link:hover {
+            background: #bc6e3e;
+            transform: scale(1.02);
+        }
+
+        .inline-link {
+            color: #b45d34;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px dotted #d9a88a;
+            transition: border 0.15s;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #b45d34;
+        }
+
+        .footnote {
+            margin-top: 2.6rem;
+            padding: 1.4rem 2.2rem;
+            background: #f7ede6;
+            border-radius: 40px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #3d2b21;
+            border: 1px solid #ecdacf;
+        }
+
+        .footnote a {
+            color: #7f4b2c;
+            font-weight: 550;
+            text-decoration: none;
+            border-bottom: 1px solid #cfb09d;
+        }
+
+        .footnote a:hover {
+            border-bottom: 2px solid #7f4b2c;
+        }
+
+        .faq-mini {
+            margin: 2rem 0 0.8rem 0;
+            background: #faf3ed;
+            border-radius: 28px;
+            padding: 1.6rem 2rem;
+        }
+
+        .faq-mini dt {
+            font-weight: 600;
+            color: #5d3824;
+            margin-top: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .faq-mini dd {
+            margin-left: 0.2rem;
+            color: #3f2e25;
+            font-size: 0.95rem;
+            border-left: 2px solid #dbb8a2;
+            padding-left: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem 0.6rem;
+            }
+            .hero {
+                padding: 2rem 1.6rem 2rem 1.6rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .content-wrap {
+                padding: 1rem 1.2rem 2.2rem 1.2rem;
+            }
+            .section-card {
+                padding: 1.4rem 1.2rem;
+                margin: 1.2rem 0;
+            }
+            .section-card h2 {
+                font-size: 1.35rem;
+            }
+            .btn-link {
+                padding: 0.5rem 1.4rem;
+                font-size: 0.95rem;
+            }
+            .footnote {
+                padding: 1rem 1.2rem;
+            }
+            .faq-mini {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero .meta-note {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="magazine">
+    <!-- hero 横幅 -->
+    <div class="hero">
+        <h1>七星彩 · 信息索引</h1>
+        <div class="sub">从公开资料整理到结构化参考 · 一份简洁的专题笔记</div>
+        <div class="meta-note">
+            <span>📋 资料维度</span>
+            <span>📁 索引标签</span>
+            <span>🗂️ 2025 整理</span>
+        </div>
+    </div>
+
+    <div class="content-wrap">
+        <!-- 第一段：背景说明 + 资料整理出发点 -->
+        <div class="section-card">
+            <h2>📌 为什么关注七星彩</h2>
+            <p><a href="https://zh-qxc.com" class="inline-link">七星彩</a>作为一种数字组合型游戏，其基础规则与号码分布逻辑在公开材料中有清晰记载。本页旨在以资料整理员的视角，将碎片化信息归拢为简洁的索引框架，便于使用者快速定位关键概念与常见问题。</p>
+            <p>所有内容均来源于合规公开渠道，不涉及任何预测或引导。我们更侧重信息结构本身——字段含义、历史对照、组合分类——让查阅者可以依据自身需求做进一步判断。</p>
+            <div class="tag-list">
+                <span class="tag"># 数字组合</span>
+                <span class="tag"># 公开规则</span>
+                <span class="tag"># 资料索引</span>
+                <span class="tag"># 结构化笔记</span>
+            </div>
+        </div>
+
+        <!-- 第二段：资料特点与场景化应用 -->
+        <div class="section-card">
+            <h2>🗂️ 整理特点与适用场景</h2>
+            <p>从字段对照表到常见术语解释，这份索引将 <a href="https://zh-qxc.com" class="inline-link">七星彩</a> 的核心信息拆解为三类：<strong>基础结构</strong>（位数、选号范围）、<strong>术语注释</strong>（直选、组选、跨度等）、<strong>统计参考</strong>（出现频率分布、位置冷热数据，均基于历史公开记录）。</p>
+            <p>适用场景包括：快速了解游戏构成的自学者、需要查阅条款的爱好者、以及希望系统梳理公开数据的研究者。所有数据均标注来源时间，避免混淆。</p>
+            <p>目前索引已覆盖 2022–2025 年主要公开信息，后续将按季度补充更新日志。</p>
+            <a href="https://zh-qxc.com" class="btn-link">七星彩</a>
+        </div>
+
+        <!-- 第三段：FAQ 摘要 + 进一步提示 -->
+        <div class="faq-mini">
+            <h2 style="font-size:1.3rem; font-weight:500; color:#7f4b2c; margin-bottom:0.6rem; border-bottom:none; display:block;">📖 常见问题摘要</h2>
+            <dl>
+                <dt>七星彩的号码范围是多少？</dt>
+                <dd>每位从 0 到 9 共十个数字，七位独立选择，组合数为 10⁷。具体以官方公布为准。</dd>
+                <dt>直选与组选的主要区别？</dt>
+                <dd>直选要求顺序完全一致；组选只关注数字集合，顺序不限。两种方式对应不同中奖条件。</dd>
+                <dt>历史频率数据在哪里查阅？</dt>
+                <dd>可参考 <a href="https://zh-qxc.com" class="inline-link">七星彩</a> 的公开记录页面，按时间筛选即可查看历史开奖号码。</dd>
+            </dl>
+            <p style="font-size:0.9rem; margin-top:0.8rem; color:#5a3f31;">* 摘要基于常见公开问题整理，不构成任何投注建议。</p>
+        </div>
+
+        <!-- 页尾访问提示 -->
+        <div class="footnote">
+            📎 如需查阅完整的历次记录、术语对照表与组合统计，可前往
+            <a href="https://zh-qxc.com">七星彩</a>
+            索引页面自行浏览。资料保持定期更新，建议以官方最新公告为准。
+        </div>
+    </div>
+</div>
+</body>
+</html>
